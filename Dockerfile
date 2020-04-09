@@ -1,4 +1,4 @@
-FROM docker.io/alpine:3.11.0
+FROM alpine:3.11
 LABEL maintainer="MiguelNdeCarvalho <geral@miguelndecarvalho.pt>"
 
 ENV UID=1337 \
