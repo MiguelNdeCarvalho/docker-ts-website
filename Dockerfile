@@ -23,13 +23,22 @@ RUN apk upgrade --no-cache \
       php7-session \
       php7-mbstring \ 
       php7-gd \
+      php7-tokenizer \
+      php7-pdo_mysql \
       nginx \
       supervisor \
       curl
 
-ADD rootfs /
+COPY rootfs .
 
-RUN /bin/sh /rootfs/setup.sh
+RUN ./setup.sh
 
+VOLUME /var/www/html
 
-CMD ["/bin/s6-svscan", "/etc/s6.d"]
+EXPOSE 80
+
+USER nobody
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+
+HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
