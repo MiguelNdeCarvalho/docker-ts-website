@@ -1,8 +1,8 @@
 FROM alpine:3.11
 LABEL maintainer="MiguelNdeCarvalho <geral@miguelndecarvalho.pt>"
 
-ENV UID=0 \
-    GID=0
+ENV PUID=0 \
+    PGID=0
 
 RUN apk upgrade --no-cache \
  && apk add --no-cache \
