@@ -1,8 +1,8 @@
 FROM alpine:3.11
 LABEL maintainer="MiguelNdeCarvalho <geral@miguelndecarvalho.pt>"
 
-ENV PUID=0 \
-    PGID=0
+ENV UID=0 \
+    GID=0
 
 RUN apk upgrade --no-cache \
  && apk add --no-cache \
@@ -27,7 +27,9 @@ RUN apk upgrade --no-cache \
       php7-pdo_mysql \
       nginx \
       supervisor \
-      curl
+      curl \ 
+      shadow && \
+      adduser --disabled-password abc
 
 COPY rootfs .
 
@@ -35,9 +37,9 @@ RUN ./setup.sh
 
 VOLUME /var/www/html
 
-EXPOSE 80
+EXPOSE 8080
 
-USER nobody
+USER abc
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 

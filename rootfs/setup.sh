@@ -13,14 +13,8 @@ mv /config/supervisord.conf /etc/supervisord.conf
 mkdir -p /var/www/html
 
 # Change the Permissions
-chown -R nobody.nobody /var/www/html && \
-chown -R nobody.nobody /run && \
-chown -R nobody.nobody /var/lib/nginx && \
-chown -R nobody.nobody /var/log/nginx
-
-# Install the TS Website
-cd /tmp 
-wget -O ts-website.zip https://github.com/Wruczek/ts-website/releases/download/dev-2.0.5.1/ts-website-dev-2.0.5.1-d7f5b01.zip
-unzip -d /var/www/html/ ts-website.zip
-mv /var/www/html/ts-website/* /var/www/html
-chown -R nobody:nobody /var/www/html
+chown -R abc:abc /var/www/html && \
+chown -R abc:abc /run && \
+chown -R abc:abc /var/lib/nginx && \
+chown -R abc:abc /var/log/nginx
+chmod +x /start.sh
